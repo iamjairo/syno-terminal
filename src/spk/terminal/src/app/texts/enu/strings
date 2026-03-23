@@ -1,4 +1,4 @@
 [app]
-app_name = "JS - Terminal"
+app_name = "terminal"
 description = "Web terminal for Synology NAS, powered by ttyd"
-index_title = "JS - Terminal"
+index_title = "terminal"
