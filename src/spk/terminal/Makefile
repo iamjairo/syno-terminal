@@ -10,7 +10,7 @@ UNSUPPORTED_ARCHS = $(OLD_PPC_ARCHS) $(ARMv5_ARCHS)
 
 include ../../mk/spksrc.common.mk
 
-MAINTAINER = RROrg/wjz304
+MAINTAINER = iamjairo
 DESCRIPTION = "JS - Terminal: Web terminal for Synology NAS, powered by ttyd."
 
 HOMEPAGE = https://www.kernel.org/
@@ -20,7 +20,7 @@ SPK_DEPENDS =
 
 DSM_UI_DIR = app
 DSM_UI_CONFIG = src/app/config
-DSM_APP_NAME = SynoCommunity.Terminal.AppInstance
+DSM_APP_NAME = IamJairo.Terminal.AppInstance
 
 WIZARDS_DIR = src/wizard
 
@@ -74,14 +74,10 @@ terminal_strip_target:
 	install -m 644 src/etc/terminal_ttyd.conf $(STAGING_DIR)/etc/terminal_ttyd.conf
 
 	install -m 755 -d $(STAGING_DIR)/app/help
-	for language in chs enu; do \
-		install -m 755 -d $(STAGING_DIR)/app/help/$${language}; \
-		install -m 644 src/app/help/$${language}/terminal_index.html $(STAGING_DIR)/app/help/$${language}/terminal_index.html; \
-	done
+	install -m 755 -d $(STAGING_DIR)/app/help/enu
+	install -m 644 src/app/help/enu/terminal_index.html $(STAGING_DIR)/app/help/enu/terminal_index.html
 	install -m 755 -d $(STAGING_DIR)/app/texts
-	for language in chs enu; do \
-		install -m 755 -d $(STAGING_DIR)/app/texts/$${language}; \
-		install -m 644 src/app/texts/$${language}/strings $(STAGING_DIR)/app/texts/$${language}/strings; \
-	done
+	install -m 755 -d $(STAGING_DIR)/app/texts/enu
+	install -m 644 src/app/texts/enu/strings $(STAGING_DIR)/app/texts/enu/strings
 	install -m 755 -d $(STAGING_DIR)/app/images/
 	install -m 644 src/app/images/*.png $(STAGING_DIR)/app/images/
