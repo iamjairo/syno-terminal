@@ -1,4 +1,4 @@
-SPK_NAME = js-terminal
+SPK_NAME = terminal
 SPK_VERS = 1.0
 SPK_REV = 1
 SPK_ICON = src/$(SPK_NAME).png
@@ -20,7 +20,7 @@ SPK_DEPENDS =
 
 DSM_UI_DIR = app
 DSM_UI_CONFIG = src/app/config
-DSM_APP_NAME = IamJairo.JsTerminal.AppInstance
+DSM_APP_NAME = SynoCommunity.Terminal.AppInstance
 
 WIZARDS_DIR = src/wizard
 
@@ -28,7 +28,7 @@ STARTABLE = yes
 SERVICE_SETUP = src/service-setup.sh
 SSS_SCRIPT = src/start-stop-status.sh
 
-COPY_TARGET = nop
+#COPY_TARGET = nop
 POST_STRIP_TARGET = terminal_strip_target
 
 
@@ -70,13 +70,18 @@ terminal_strip_target:
 	chmod a+x $(STAGING_DIR)/bin/ttyd
 	install -m 755 -d $(STAGING_DIR)/etc/
 	install -m 644 src/etc/alias.terminal.conf $(STAGING_DIR)/etc/alias.terminal.conf
+	# install -m 644 src/etc/terminal_tmux.conf $(STAGING_DIR)/etc/terminal_tmux.conf
 	install -m 644 src/etc/terminal_ttyd.conf $(STAGING_DIR)/etc/terminal_ttyd.conf
 
 	install -m 755 -d $(STAGING_DIR)/app/help
-	install -m 755 -d $(STAGING_DIR)/app/help/enu
-	install -m 644 src/app/help/enu/terminal_index.html $(STAGING_DIR)/app/help/enu/terminal_index.html
+	for language in chs enu; do \
+		install -m 755 -d $(STAGING_DIR)/app/help/$${language}; \
+		install -m 644 src/app/help/$${language}/terminal_index.html $(STAGING_DIR)/app/help/$${language}/terminal_index.html; \
+	done
 	install -m 755 -d $(STAGING_DIR)/app/texts
-	install -m 755 -d $(STAGING_DIR)/app/texts/enu
-	install -m 644 src/app/texts/enu/strings $(STAGING_DIR)/app/texts/enu/strings
+	for language in chs enu; do \
+		install -m 755 -d $(STAGING_DIR)/app/texts/$${language}; \
+		install -m 644 src/app/texts/$${language}/strings $(STAGING_DIR)/app/texts/$${language}/strings; \
+	done
 	install -m 755 -d $(STAGING_DIR)/app/images/
 	install -m 644 src/app/images/*.png $(STAGING_DIR)/app/images/
