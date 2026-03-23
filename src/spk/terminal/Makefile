@@ -11,7 +11,7 @@ UNSUPPORTED_ARCHS = $(OLD_PPC_ARCHS) $(ARMv5_ARCHS)
 include ../../mk/spksrc.common.mk
 
 MAINTAINER = RROrg/wjz304
-DESCRIPTION = "Windowed terminal for Synology NAS, based on ttyd."
+DESCRIPTION = "JS - Terminal: Web terminal for Synology NAS, powered by ttyd."
 
 HOMEPAGE = https://www.kernel.org/
 LICENSE  = GPLv2
