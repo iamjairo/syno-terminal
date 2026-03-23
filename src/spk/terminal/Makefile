@@ -3,7 +3,7 @@ SPK_VERS = 3.0
 SPK_REV = 4
 SPK_ICON = src/$(SPK_NAME).png
 
-DEPENDS = cross/tmux
+DEPENDS =
 
 
 UNSUPPORTED_ARCHS = $(OLD_PPC_ARCHS) $(ARMv5_ARCHS)

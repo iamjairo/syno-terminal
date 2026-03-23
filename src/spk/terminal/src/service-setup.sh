@@ -61,12 +61,8 @@ service_prestart() {
 		echo "nginx configuration error"
 	fi
 
-	ARCH=$(uname -m)
-	TMUX_ARGS="${SYNOPKG_PKGDEST}/bin/tmux -u -f ${SYNOPKG_PKGDEST}/etc/terminal_tmux.conf new -A -s terminal"
 	TTYD_ARGS="$(cat ${SYNOPKG_PKGDEST}/etc/terminal_ttyd.conf 2>/dev/null | xargs)"
-	LD_LIBRARY_PATH="${SYNOPKG_PKGDEST}/bin:${SYNOPKG_PKGDEST}/lib:$LD_LIBRARY_PATH" \
-	TERMINFO="${SYNOPKG_PKGDEST}/share/terminfo" \
-	nohup ${SYNOPKG_PKGDEST}/bin/ttyd ${TTYD_ARGS} ${TMUX_ARGS} >${LOG_FILE} 2>&1 &
+	nohup ${SYNOPKG_PKGDEST}/bin/ttyd ${TTYD_ARGS} login >${LOG_FILE} 2>&1 &
 	echo $! >"${PID_FILE}"
 }
 
