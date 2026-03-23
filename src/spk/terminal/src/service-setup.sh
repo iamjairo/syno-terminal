@@ -52,17 +52,20 @@ service_prestart() {
 	echo "service_prestart: Before service start"
 
 	# /etc/nginx/conf.d/alias.*.conf or /usr/syno/share/nginx/conf.d/dsm.*.conf
-	ln -s ${SYNOPKG_PKGDEST}/etc/alias.terminal.conf /etc/nginx/conf.d/alias.js-terminal.conf
+	ln -s ${SYNOPKG_PKGDEST}/etc/alias.terminal.conf /etc/nginx/conf.d/alias.terminal.conf
 
 	if nginx -t >/dev/null 2>&1; then
 		systemctl reload nginx
 	else
-		rm -f /etc/nginx/conf.d/alias.js-terminal.conf
+		rm -f /etc/nginx/conf.d/alias.terminal.conf
 		echo "nginx configuration error"
 	fi
 
+	ARCH=$(uname -m)
 	TTYD_ARGS="$(cat ${SYNOPKG_PKGDEST}/etc/terminal_ttyd.conf 2>/dev/null | xargs)"
-	nohup ${SYNOPKG_PKGDEST}/bin/ttyd ${TTYD_ARGS} /bin/bash >${LOG_FILE} 2>&1 &
+	LD_LIBRARY_PATH="${SYNOPKG_PKGDEST}/bin:${SYNOPKG_PKGDEST}/lib:$LD_LIBRARY_PATH" \
+	TERMINFO="${SYNOPKG_PKGDEST}/share/terminfo" \
+	nohup ${SYNOPKG_PKGDEST}/bin/ttyd ${TTYD_ARGS} ${TMUX_ARGS} >${LOG_FILE} 2>&1 &
 	echo $! >"${PID_FILE}"
 }
 
@@ -70,7 +73,7 @@ service_poststop() {
 	# use echo to write to the service log file.
 	echo "service_poststop: After service stop"
 
-	rm -f /etc/nginx/conf.d/alias.js-terminal.conf
+	rm -f /etc/nginx/conf.d/alias.terminal.conf
 	systemctl reload nginx
 
 	if [ -n "${PID_FILE}" -a -r "${PID_FILE}" ]; then
