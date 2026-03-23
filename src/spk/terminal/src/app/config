@@ -1,6 +1,6 @@
 {
     "terminal.js": {
-        "IamJairo.JsTerminal.AppInstance": {
+        "SynoCommunity.Terminal.AppInstance": {
             "type": "app",
             "title": "app:app_name",
             "version": "0.1",
@@ -8,10 +8,10 @@
             "texts": "texts",
             "allowMultiInstance": false,
             "allUsers": false,
-            "appWindow": "IamJairo.JsTerminal.AppWindow",
-            "depend": ["IamJairo.JsTerminal.AppWindow"]
+            "appWindow": "SynoCommunity.Terminal.AppWindow",
+            "depend": ["SynoCommunity.Terminal.AppWindow"]
         },
-        "IamJairo.JsTerminal.AppWindow": {
+        "SynoCommunity.Terminal.AppWindow": {
             "type": "lib",
             "title": "app:app_name",
             "icon": "images/terminal-{0}.png",
