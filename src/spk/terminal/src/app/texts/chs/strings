@@ -1,4 +1,0 @@
-[app]
-app_name = "JS - Terminal"
-description = "基于 ttyd 的 Synology NAS Web 终端"
-index_title = "JS - Terminal"
