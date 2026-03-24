@@ -1,4 +1,0 @@
-[app]
-app_name = "terminal"
-description = "适用于群晖 NAS 的网页终端，由 ttyd 驱动"
-index_title = "terminal"
